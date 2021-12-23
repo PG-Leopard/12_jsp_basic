@@ -1,0 +1,48 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습문제</title>
+</head>
+<body>
+
+	<!-- 
+	
+		# 데이터 출력
+		
+		1. JstlEx15_정답예시 Servlet에서 productList를 전달받고
+		2. 전달받은 상품이 없으면 '조회된상품이 없습니다'를 출력
+		   전달받은 상품이 있으면 각각 상품에 알맞도록 데이터를 출력해보시오.
+		
+	 -->
+	 
+	<table border="1">
+		<tr align="center">
+			<td>상품코드</td>
+			<td>상품이름</td>
+			<td>부서코드</td>
+			<td>부서이름</td>
+			<td>관리자이름</td>
+		</tr>
+		<c:choose>
+			<c:when test="${empty productList}">
+				<td colspan="5" align="center">조회된 상품이 없습니다.</td>
+			</c:when>
+			<c:when test="${not empty productList}">
+				<c:forEach var="product" items="${productList}">
+					<tr align="center">
+						<td>${product.getPdCd()}</td>
+						<td>${product.getPdNm()}</td>
+						<td>${product.getDeptCd()}</td>
+						<td>${product.getDeptNm()}</td>
+						<td>${product.getMgrNm()}</td>
+					</tr>
+				</c:forEach>
+			</c:when>
+		</c:choose>
+	</table> 
+	
+</body>
+</html>
